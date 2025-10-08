@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>YouLite — Vídeos y descubrimiento</title>
+  <meta name="description" content="Interfaz minimalista tipo YouTube, diseñada para rendimiento, accesibilidad y responsive." />
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Prefer system fonts (Inter/Open Sans-like fallback). No dependencias externas. -->
+  <style>
+    /* tiny font-swap fallback so page looks consistent if custom fonts not present */
+    :root{--ui-font: "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;}
+  </style>
+</head>
+<body class="app">
+
+  <!-- Header: logo, nav, buscador y acciones -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <!-- Hamburger (visible on mobile) -->
+      <button class="btn icon-btn hamburger" aria-label="Abrir menú" id="btnMenu" aria-expanded="false">
+        <span class="hamburger-line" aria-hidden="true"></span>
+      </button>
+
+      <!-- Logo: accessible, not an actual company logo -->
+      <a href="#" class="site-logo" aria-label="YouLite - ir al inicio">
+        <!-- Inline SVG logo (lightweight) -->
+        <svg width="40" height="28" viewBox="0 0 40 28" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true" focusable="false">
+          <rect width="40" height="28" rx="4" fill="#FF2B2B"/>
+          <polygon points="15,8 26,14 15,20" fill="#fff"/>
+        </svg>
+        <span class="logo-text">YouLite</span>
+      </a>
+
+      <!-- Search form -->
+      <form id="searchForm" class="search-form" role="search" aria-label="Buscar vídeos">
+        <label for="q" class="sr-only">Buscar</label>
+        <input id="q" name="q" type="search" placeholder="Buscar vídeos, canales o temas" aria-label="Buscar" autocomplete="off" />
+        <button class="btn search-btn" type="submit" aria-label="Buscar">
+          🔍
+        </button>
+      </form>
+
+      <!-- Header actions -->
+      <nav class="header-actions" aria-label="Acciones de cabecera">
+        <button class="btn icon-btn" aria-label="Crear" title="Crear">
+          ⬆️
+        </button>
+        <button class="btn icon-btn" aria-label="Notificaciones" title="Notificaciones">
+          🔔
+        </button>
+        <button class="btn avatar" aria-label="Tu cuenta" title="Tu cuenta">
+          <span class="sr-only">Cuenta</span>
+          <!-- simple avatar circle -->
+          <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true" focusable="false">
+            <circle cx="14" cy="14" r="14" fill="#ddd"/>
+            <circle cx="14" cy="11" r="4" fill="#bbb"/>
+            <path d="M4 24c2-6 10-6 10-6s8 0 10 6v0H4z" fill="#bbb"/>
+          </svg>
+        </button>
+      </nav>
+    </div>
+
+    <!-- Primary site navigation (could be collapsed) -->
+    <nav class="primary-nav" id="primaryNav" aria-label="Navegación principal">
+      <ul>
+        <li><a href="#" class="nav-link is-active">Inicio</a></li>
+        <li><a href="#" class="nav-link">Explorar</a></li>
+        <li><a href="#" class="nav-link">Tendencias</a></li>
+        <li><a href="#" class="nav-link">Biblioteca</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main content -->
+  <main id="main" class="site-main" role="main">
+    <!-- Hero / Featured -->
+    <section class="hero" aria-labelledby="heroTitle">
+      <h1 id="heroTitle" class="hero-title">Descubre vídeos con estilo minimal</h1>
+      <p class="hero-sub">Selección curada para descubrir contenido nuevo y relevante.</p>
+
+      <div class="hero-grid">
+        <!-- Featured cards (semblanza a thumbnails) -->
+        <article class="card featured" tabindex="0" aria-label="Vídeo destacado 1">
+          <!-- inline SVG thumbnail data (accessible fallback) -->
+          <div class="thumb" role="img" aria-label="Miniatura del vídeo: Aurora en la ciudad">
+            <svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true">
+              <defs>
+                <linearGradient id="g1" x1="0" x2="1">
+                  <stop offset="0" stop-color="#1f1f1f"/>
+                  <stop offset="1" stop-color="#2b2b2b"/>
+                </linearGradient>
+              </defs>
+              <rect width="320" height="180" fill="url(#g1)"/>
+              <circle cx="260" cy="40" r="28" fill="#ff2b2b" />
+              <polygon points="120,60 200,90 120,120" fill="#fff" />
+            </svg>
+          </div>
+          <div class="meta">
+            <h2 class="video-title">Aurora urbana — breve documental</h2>
+            <p class="video-meta">4.2K vistas • 2 días</p>
+          </div>
+        </article>
+
+        <article class="card featured" tabindex="0" aria-label="Vídeo destacado 2">
+          <div class="thumb" role="img" aria-label="Miniatura del vídeo: Cocina minimal">
+            <svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true">
+              <rect width="320" height="180" fill="#111"/>
+              <rect x="12" y="20" width="120" height="80" fill="#222" rx="6"/>
+              <rect x="150" y="40" width="150" height="90" fill="#2b2b2b" rx="6"/>
+              <polygon points="40,120 160,120 100,160" fill="#ff2b2b"/>
+            </svg>
+          </div>
+          <div class="meta">
+            <h2 class="video-title">Cocina minimal: 5 platos rápidos</h2>
+            <p class="video-meta">12K vistas • 1 semana</p>
+          </div>
+        </article>
+
+        <article class="card featured" tabindex="0" aria-label="Vídeo destacado 3">
+          <div class="thumb" role="img" aria-label="Miniatura del vídeo: Rutina diaria">
+            <svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true">
+              <rect width="320" height="180" fill="#0f0f0f"/>
+              <rect x="24" y="18" width="272" height="60" fill="#1a1a1a" rx="8"/>
+              <circle cx="64" cy="120" r="36" fill="#ff2b2b"/>
+              <rect x="120" y="96" width="160" height="54" rx="6" fill="#222"/>
+            </svg>
+          </div>
+          <div class="meta">
+            <h2 class="video-title">Rutina diaria para concentración</h2>
+            <p class="video-meta">8.4K vistas • 4 días</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Grid of videos: semantic structure with articles -->
+    <section class="grid-section" aria-labelledby="gridTitle">
+      <header class="section-header">
+        <h2 id="gridTitle">Recomendados</h2>
+        <p class="section-desc">Basado en tus intereses recientes</p>
+      </header>
+
+      <ul class="video-grid" id="videoGrid" aria-live="polite">
+        <!-- Each <li> contains an <article> representing a video card -->
+        <!-- We include several cards as examples; JS can generate more or filter -->
+        <li class="grid-item">
+          <article class="card" tabindex="0">
+            <div class="thumb">
+              <!-- small inline SVG as placeholder thumbnail -->
+              <svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true">
+                <rect width="320" height="180" fill="#161616"/>
+                <polygon points="120,60 200,90 120,120" fill="#ff2b2b"/>
+              </svg>
+            </div>
+            <div class="meta">
+              <h3 class="video-title">Cómo optimizar tu flujo de trabajo</h3>
+              <p class="video-meta">6.1K • 3 días</p>
+            </div>
+          </article>
+        </li>
+
+        <li class="grid-item">
+          <article class="card" tabindex="0">
+            <div class="thumb">
+              <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true">
+                <rect width="320" height="180" fill="#131313"/>
+                <rect x="22" y="22" width="100" height="100" rx="6" fill="#222"/>
+                <polygon points="160,80 230,100 160,120" fill="#ff2b2b"/>
+              </svg>
+            </div>
+            <div class="meta">
+              <h3 class="video-title">Diseño UX: principios esenciales</h3>
+              <p class="video-meta">21K • 2 semanas</p>
+            </div>
+          </article>
+        </li>
+
+        <li class="grid-item">
+          <article class="card" tabindex="0">
+            <div class="thumb">
+              <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true">
+                <rect width="320" height="180" fill="#0f0f0f"/>
+                <circle cx="80" cy="80" r="38" fill="#ff2b2b"/>
+                <rect x="160" y="40" width="120" height="80" rx="8" fill="#232323"/>
+              </svg>
+            </div>
+            <div class="meta">
+              <h3 class="video-title">Meditación guiada de 10 minutos</h3>
+              <p class="video-meta">9.5K • 6 días</p>
+            </div>
+          </article>
+        </li>
+
+        <!-- more cards... -->
+      </ul>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <nav aria-label="Enlaces del pie de página">
+        <a href="#" class="footer-link">Acerca de</a>
+        <a href="#" class="footer-link">Prensa</a>
+        <a href="#" class="footer-link">Derechos</a>
+        <a href="#" class="footer-link">Ayuda</a>
+      </nav>
+      <p class="copyright">© <time datetime="2025">2025</time> YouLite — Diseño minimalista</p>
+    </div>
+  </footer>
+
+  <!-- Small inline script loader hint for progressive enhancement -->
+  <script src="app.js" defer></script>
+</body>
+</html>
